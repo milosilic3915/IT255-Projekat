@@ -1,0 +1,103 @@
+<div class="row">
+  <div class="col">
+    <div class="card" style="border: 0!important;">
+      <div class="card-body">
+        <form [formGroup]="this.languageForm" (ngSubmit)="onSubmit()">
+          <div class="mb-3 d-none">
+            <input type="hidden" id="id" class="form-control" formControlName="id" />
+          </div>
+
+          <!-- Name -->
+          <div class="mb-3">
+            <label for="name" class="form-label">Name</label>
+            <input type="text" id="name" class="form-control" formControlName="name"
+              [ngClass]="this.getValidationClass('name')" />
+            <div class="invalid-feedback">
+              {{
+              this.languageForm.get("name").hasError("required")
+              ? " Name is required."
+              : ""
+              }}
+              {{
+              this.languageForm.get("name").hasError("minlength")
+              ? " 2 letters required."
+              : ""
+              }}
+            </div>
+            <div class="valid-feedback">Good.</div>
+          </div>
+
+          <!-- Description -->
+          <div class="mb-3">
+            <label for="description" class="form-label">Description</label>
+            <input type="text" id="description" class="form-control" formControlName="description"
+              [ngClass]="this.getValidationClass('description')" />
+            <div class="invalid-feedback">
+              {{
+              this.languageForm.get("description").hasError("required")
+              ? " Description is required."
+              : ""
+              }}
+              {{
+              this.languageForm.get("description").hasError("minlength")
+              ? " 2 letters required."
+              : ""
+              }}
+            </div>
+            <div class="valid-feedback">Good.</div>
+          </div>
+
+          <!-- CreatedBy -->
+          <div class="mb-3">
+            <label for="createdBy" class="form-label">Created by</label>
+            <input type="text" id="createdBy" class="form-control" formControlName="createdBy"
+              [ngClass]="this.getValidationClass('createdBy')" />
+            <div class="invalid-feedback">
+              {{
+              this.languageForm.get("createdBy").hasError("required")
+              ? " Created by is required."
+              : ""
+              }}
+              {{
+              this.languageForm.get("createdBy").hasError("minlength")
+              ? " 2 letters required."
+              : ""
+              }}
+            </div>
+            <div class="valid-feedback">Good.</div>
+          </div>
+
+          <!-- Image -->
+          <div class="mb-3">
+            <label for="image" class="form-label">Image</label>
+            <input type="file" accept="image/*" id="image" class="form-control" formControlName="image"
+              [ngClass]="this.getValidationClass('image')" (change)="uploadImage($event)" #myImage/>
+            <div class="invalid-feedback">
+              {{
+              this.languageForm.get("image").hasError("required")
+              ? " Image is required."
+              : ""
+              }}
+              {{
+              this.languageForm.get("image").hasError("minlength")
+              ? " 2 letters required."
+              : ""
+              }}
+            </div>
+            <div class="valid-feedback">Good.</div>
+          </div>
+          
+          <button type="submit" class="btn btn-primary" *ngIf="!this.editing" [disabled]="!this.languageForm.valid">
+            Add New Language
+          </button>
+          <button type="submit" class="btn btn-warning" *ngIf="this.editing" [disabled]="!this.languageForm.valid">
+            Update Language
+          </button>
+          <button type="button" class="btn btn-outline-secondary ms-3" (click)="onCancel()">
+            Cancel
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

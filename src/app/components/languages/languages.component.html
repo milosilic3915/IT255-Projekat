@@ -1,0 +1,58 @@
+<div class="container">
+  <!-- Search -->
+  <div class="row my-5">
+    <div class="col-4">
+      <div class="card" style="border: 0!important">
+        <div class="card-body">
+          <form>
+            <div class="mb-3">
+              <label for="search" class="form-label">Search Languages by name</label>
+              <input type="text" name="searchLanguages" id="search" class="form-control" placeholder="Search for language..."
+                [(ngModel)]="this.searchValue" />
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-4">
+      <!-- Form -->
+      <app-language-form (addLanguageEvent)="addLanguage($event)" (updateLanguageEvent)="updateLanguage($event)">
+      </app-language-form>
+    </div>
+    <div class="col-8">
+      <!-- List -->
+      <div class="row row-cols-2 justify-content-center mt-5">
+        <div class="col my-3" *ngFor="let language of languages | filterLanguages: this.searchValue">
+          <div class="card shadow" style="border: 0!important">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-5">
+                  <img [src]="language.image" alt="" [ngStyle]="{ width: '60%' }" />
+                </div>
+                <div class="col-7">
+                  <h4>{{ language.name }}</h4>
+                </div>
+              </div>
+              <div class="row mt-2">
+                <div class="col-auto">
+                  <button type="button" class="btn btn-danger btn-sm" (click)="deleteLanguage(language.id)">
+                    Delete
+                  </button>
+                  <button type="button" class="btn btn-warning btn-sm ms-2" (click)="editLanguage(language)">
+                    Edit
+                  </button>
+                  <button type="button" class="btn btn-primary btn-sm ms-2" routerLink="/languages/{{ language.id }}">
+                    Details
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

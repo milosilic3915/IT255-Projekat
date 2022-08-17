@@ -1,0 +1,28 @@
+<a routerLink="/languages" class="btn btn-link mb-5 text-decoration-none">
+  < Back To Languages</a>
+
+    <div class="card">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-auto" *ngIf="loading">
+            <p>Loading...</p>
+          </div>
+
+          <div class="col" *ngIf="!loading">
+            <div class="container">
+              <div class="row">
+                <div class="col-lg-4">
+                  <img src="{{language.image}}" alt="" />
+                </div>
+                <div class="col-lg-8">
+                  <p>Id: <b>{{ language.id }}</b></p>
+                  <p>Name: <b>{{ language.name }}</b></p>
+                  <p>Description: <b>{{ language.description }}</b></p>
+                  <p>Created by: <b>{{ language.createdBy }}</b></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
